@@ -141,10 +141,16 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">HW 4 << <a href='HW 4.html'>Previous</a> <a href='Final Report.html'>Next</a> >> Final Report<br /><h1>HW 4 Exam</h1>
-<p>每六人為一組進行協同程式練習</p>
-<p>透過 Jupyterlab 協同網頁, 輪流指定各組編寫 HW 4 相關的程式練習, 以及網頁內容 (localhost 與 Codespaces 環境)編輯.</p>
-<br />HW 4 << <a href='HW 4.html'>Previous</a> <a href='Final Report.html'>Next</a> >> Final Report</div>
+    <div id="tipue_search_content">w10 << <a href='w10.html'>Previous</a> <a href='HW 2.html'>Next</a> >> HW 2<br /><h1>w11</h1>
+<p>from browser import html<br/>from browser import document as doc<br/>import math</p>
+<p># 利用 html 建立 canvas 超文件物件<br/>canvas = html.CANVAS(width = 400, height = 400)<br/>brython_div = doc["brython_div1"]<br/>brython_div &lt;= canvas</p>
+<p># 每一格的 pixel 數<br/>gs = 40 # 可以調整為較大的格子尺寸，這樣圓形會顯得更大</p>
+<p># gs*tc = canvas width and height<br/>ctx = canvas.getContext("2d")</p>
+<p>def dRect(lux, luy, w, h, s=1, c='#ff0000'):<br/> ctx.lineWidth = s<br/> ctx.strokeStyle = c<br/> ctx.beginPath()<br/> ctx.rect(lux, luy, w, h)<br/> ctx.stroke()</p>
+<p>def grid(width, height, grid_pix):<br/> # x 方向共 width 格<br/> # y 方向共 height 格<br/> # grid_pix, 每一個的 pixel 點數<br/> # 利用迴圈與座標增量繪圖<br/> for i in range(width):<br/> for j in range(height):<br/> dRect(i*grid_pix, j*grid_pix, grid_pix, grid_pix, 1, "lightgrey")</p>
+<p>def fill(x, y, color):<br/> ctx.fillStyle = color<br/> ctx.fillRect(x * gs, y * gs, gs, gs)</p>
+<p>def draw_circle(radius, center_x, center_y, size=10):<br/> # 繪製圓形<br/> for y in range(size):<br/> for x in range(size):<br/> # 計算 (x, y) 到圓心的距離的平方<br/> distance_squared = (x - center_x) ** 2 + (y - center_y) ** 2<br/> # 如果距離小於等於半徑的範圍，則填充<br/> if distance_squared &lt;= radius ** 2:<br/> fill(x, y, "black")</p>
+<p># 設定圓心為 (5, 5)，半徑為 4，畫出 10x10 圓形<br/>grid(10, 10, gs) # 繪製 10x10 的網格<br/>draw_circle(4, 5, 5, 10) # 在圓心 (5, 5) 和半徑 4 的位置畫圓</p><br />w10 << <a href='w10.html'>Previous</a> <a href='HW 2.html'>Next</a> >> HW 2</div>
         
     <!-- footer -->
       <div class="container">
