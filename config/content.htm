@@ -47,23 +47,20 @@
 <p><iframe allowfullscreen="allowfullscreen" height="314" src="//www.youtube.com/embed/l4qYnNcplFY" width="560"></iframe></p>
 <p><iframe allowfullscreen="allowfullscreen" height="314" src="//www.youtube.com/embed/nyjEjPtVtKA" width="560"></iframe></p>
 <p><iframe allowfullscreen="allowfullscreen" height="314" src="//www.youtube.com/embed/J5EGMRwuC_g" width="560"></iframe></p>
-<h2>w11</h2>
-<p>from browser import html<br/>from browser import document as doc<br/>import math</p>
-<p># 利用 html 建立 canvas 超文件物件<br/>canvas = html.CANVAS(width = 400, height = 400)<br/>brython_div = doc["brython_div1"]<br/>brython_div &lt;= canvas</p>
-<p># 每一格的 pixel 數<br/>gs = 40 # 可以調整為較大的格子尺寸，這樣圓形會顯得更大</p>
-<p># gs*tc = canvas width and height<br/>ctx = canvas.getContext("2d")</p>
-<p>def dRect(lux, luy, w, h, s=1, c='#ff0000'):<br/> ctx.lineWidth = s<br/> ctx.strokeStyle = c<br/> ctx.beginPath()<br/> ctx.rect(lux, luy, w, h)<br/> ctx.stroke()</p>
-<p>def grid(width, height, grid_pix):<br/> # x 方向共 width 格<br/> # y 方向共 height 格<br/> # grid_pix, 每一個的 pixel 點數<br/> # 利用迴圈與座標增量繪圖<br/> for i in range(width):<br/> for j in range(height):<br/> dRect(i*grid_pix, j*grid_pix, grid_pix, grid_pix, 1, "lightgrey")</p>
-<p>def fill(x, y, color):<br/> ctx.fillStyle = color<br/> ctx.fillRect(x * gs, y * gs, gs, gs)</p>
-<p>def draw_circle(radius, center_x, center_y, size=10):<br/> # 繪製圓形<br/> for y in range(size):<br/> for x in range(size):<br/> # 計算 (x, y) 到圓心的距離的平方<br/> distance_squared = (x - center_x) ** 2 + (y - center_y) ** 2<br/> # 如果距離小於等於半徑的範圍，則填充<br/> if distance_squared &lt;= radius ** 2:<br/> fill(x, y, "black")</p>
-<p># 設定圓心為 (5, 5)，半徑為 4，畫出 10x10 圓形<br/>grid(10, 10, gs) # 繪製 10x10 的網格<br/>draw_circle(4, 5, 5, 10) # 在圓心 (5, 5) 和半徑 4 的位置畫圓</p><h1>HW 2</h1>
+<h3>w11</h3>
+<p>1.  已知可以用 Python 程式<a href="https://mde.tw/cp2024/content/Brython.html?src=https://gist.githubusercontent.com/mdecycu/5e6eda7a004c15fa7262b9a80bfa4af6/raw/c2225ac22f32ee8485a630b42cf3f4d8567bb661/up_to_down_pyramid.py">由上往下列印三角形 *</a>, 或<a href="https://mde.tw/cp2024/content/Brython.html?src=https://gist.githubusercontent.com/mdecycu/5e6eda7a004c15fa7262b9a80bfa4af6/raw/56793c72d4495d564e3cc6214ed5fb68dbd2b21d/left_to_right_pyramid.py">由左往右列印三角形 *</a>, 請將此程式延伸到可以在 10x10 的字元區域中, 以 "*" 字元列印出圓型區域. 完成後請將程式碼存入個人 Gist 後, 直接在個人作業網站中的 Brython 頁面中執行. (提示: ?src=gist_script_URL)</p>
+<p>第一題:<a href="https://mdecp2024.github.io/hw-41323207/content/Brython.html?src=https://gist.githubusercontent.com/41323207/e85a80c2a5d736298ac54652d3f9ffe4/raw/5fb6d2844b7e22396f8f808a873759b00020bf88/hw1.py">"*"字號型圖</a></p>
+<p></p>
+<p>2. 已知可以在網頁中利用 Brython 繪製方格與塗色, 如下連結, 請設法修改此一程式, 直接將程式存入個人的 Gist, 並利用黑色方塊圍出一個圓形區域.</p>
+<p><a href="https://mde.tw/cp2024/content/Brython.html?src=https://gist.githubusercontent.com/mdecycu/5705fc2a67aa1db0c0d44d6d0478b08b/raw/f95909804a1f134963cade8463eeb9bd32129ea8/grid_line_and_fill_in_Brython.py">網頁上的方格與塗色</a></p><h1>HW 2</h1>
 <h4>主題: Python 的數列、判斷式與重複迴圈 (20%)<span style="background-color: #ffff99;"><br/></span></h4>
 <p style="padding-left: 30px;">Python 課程教材: <a href="https://www.learnpythonwithjupyter.com/">https://www.learnpythonwithjupyter.com/</a> - PART 2 and Part 3</p>
 <hr/>
 <p>延續 HW 1 網頁資料整理與程式練習方法, 整理下列內容 (20%):</p>
 <p>PART 2: Introduction to lists and if/else statements</p>
 <p>PART 3: Introduction to the for loop</p>
-<p>完成上述流程整理後, 請將 HW2 自評分數輸入 cp2024 自評表單中.</p><h2>HW 2 Exam</h2>
+<p>完成上述流程整理後, 請將 HW2 自評分數輸入 cp2024 自評表單中.</p>
+<h2>HW 2 Exam</h2>
 <p>每六人為一組進行協同程式練習</p>
 <p>透過 Jupyterlab 協同網頁, 輪流指定各組編寫 HW 2 相關的程式練習, 以及網頁內容 (localhost 與 Codespaces 環境)編輯.</p>
 <h1>HW 3</h1>
