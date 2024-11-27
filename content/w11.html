@@ -144,9 +144,77 @@ img.add_border {
     <div id="tipue_search_content">w10 << <a href='w10.html'>Previous</a> <a href='HW 2.html'>Next</a> >> HW 2<br /><h1>w11</h1>
 <p>1.  已知可以用 Python 程式<a href="https://mde.tw/cp2024/content/Brython.html?src=https://gist.githubusercontent.com/mdecycu/5e6eda7a004c15fa7262b9a80bfa4af6/raw/c2225ac22f32ee8485a630b42cf3f4d8567bb661/up_to_down_pyramid.py">由上往下列印三角形 *</a>, 或<a href="https://mde.tw/cp2024/content/Brython.html?src=https://gist.githubusercontent.com/mdecycu/5e6eda7a004c15fa7262b9a80bfa4af6/raw/56793c72d4495d564e3cc6214ed5fb68dbd2b21d/left_to_right_pyramid.py">由左往右列印三角形 *</a>, 請將此程式延伸到可以在 10x10 的字元區域中, 以 "*" 字元列印出圓型區域. 完成後請將程式碼存入個人 Gist 後, 直接在個人作業網站中的 Brython 頁面中執行. (提示: ?src=gist_script_URL)</p>
 <p>第一題:<a href="https://mdecp2024.github.io/hw-41323207/content/Brython.html?src=https://gist.githubusercontent.com/41323207/e85a80c2a5d736298ac54652d3f9ffe4/raw/5fb6d2844b7e22396f8f808a873759b00020bf88/hw1.py">"*"字號型圖</a></p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">def draw_circle(radius, center, size=10):
+    h, k = center  # 圓心座標
+    for y in range(size):
+        for x in range(size):
+            # 計算 (x, y) 是否在圓形的範圍內
+            if (x - h)**2 + (y - k)**2 &lt;= radius**2:
+                print('*', end=' ')
+            else:
+                print(' ', end=' ')
+        print()  # 換行
+
+# 設定圓心為 (5, 5)，半徑為 4
+draw_circle(4, (5, 5))</pre>
 <p></p>
 <p>2. 已知可以在網頁中利用 Brython 繪製方格與塗色, 如下連結, 請設法修改此一程式, 直接將程式存入個人的 Gist, 並利用黑色方塊圍出一個圓形區域.</p>
-<p>第二題:<a href="https://mdecp2024.github.io/hw-41323207/content/Brython.html?src=https://gist.githubusercontent.com/41323207/e85a80c2a5d736298ac54652d3f9ffe4/raw/97b2f9891e9d7937f5154267cde6e7209b66686b/hw2.py">網頁上的方格與塗色</a></p><br />w10 << <a href='w10.html'>Previous</a> <a href='HW 2.html'>Next</a> >> HW 2</div>
+<p>第二題:<a href="https://mdecp2024.github.io/hw-41323207/content/Brython.html?src=https://gist.githubusercontent.com/41323207/e85a80c2a5d736298ac54652d3f9ffe4/raw/97b2f9891e9d7937f5154267cde6e7209b66686b/hw2.py">網頁上的方格與塗色</a></p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">def draw_circle(radius, center, size=10):
+    h, k = center  # 圓心座標
+    for y in range(size):
+        for x in range(size):
+            # 計算 (x, y) 是否在圓形的範圍內
+            if (x - h)**2 + (y - k)**2 &lt;= radius**2:
+                print('*', end=' ')
+            else:
+                print(' ', end=' ')
+        print()  # 換行
+
+# 設定圓心為 (5, 5)，半徑為 4
+draw_circle(4, (5, 5))
+from browser import html
+from browser import document as doc
+
+# 利用 html 建立畫布
+canvas = html.CANVAS(width=400, height=400)
+brython_div = doc["brython_div1"]
+brython_div &lt;= canvas
+
+# 每格的像素數
+gs = 40  # 每個方格的大小設為 40，可以根據需要調整大小
+
+# 獲取繪圖上下文
+ctx = canvas.getContext("2d")
+
+# 繪製矩形的函數
+def dRect(lux, luy, w, h, s=1, c='#ff0000'):
+    ctx.lineWidth = s
+    ctx.strokeStyle = c
+    ctx.beginPath()
+    ctx.rect(lux, luy, w, h)
+    ctx.stroke()
+
+# 繪製網格並在每格內填充黑色圓形區域
+def grid(width, height, grid_pix, cx, cy, r):
+    for i in range(width):
+        for j in range(height):
+            # 如果這個格子在圓形區域內，將其填充為黑色
+            if (i - cx) ** 2 + (j - cy) ** 2 &lt;= r ** 2:
+                ctx.fillStyle = "black"
+                ctx.fillRect(i * grid_pix, j * grid_pix, grid_pix, grid_pix)
+            else:
+                # 其餘格子繪製為灰色
+                dRect(i * grid_pix, j * grid_pix, grid_pix, grid_pix, 1, "lightgrey")
+
+# 設定圓形的位置與半徑
+circle_center_x = 5  # 圓心在 10x10 方格的中間位置
+circle_center_y = 5
+circle_radius = 4    # 圓的半徑
+
+# 繪製 10x10 的網格，每格大小為 40 像素
+grid(10, 10, gs, circle_center_x, circle_center_y, circle_radius)</pre>
+<p></p><br />w10 << <a href='w10.html'>Previous</a> <a href='HW 2.html'>Next</a> >> HW 2</div>
         
     <!-- footer -->
       <div class="container">
