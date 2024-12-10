@@ -126,17 +126,62 @@ grid(10, 10, gs, circle_center_x, circle_center_y, circle_radius)</pre>
 <p><a href="https://mdecp2024.github.io/hw-41323207/content/Brython.html?src=https://gist.githubusercontent.com/41323207/d9112ada41c308ae3048b78e0f01ac44/raw/71227db59704e5bcba252541c56d3b69c581eff4/hw3.py">圖框</a></p><h3>w12</h3>
 <h3>w13</h3>
 <p><a href="https://mdecp2024.github.io/hw-41323207/content/Brython.html?src=%22https://gist.githubusercontent.com/41323207/42c464dce29c30b33561331a9fd2a1ab/raw/3aab1bca28542559bb3f335215cae140e24f4448/hw1.py">圓</a></p>
-<p></p>
-<p><a href="/get_page/w13/python">from browser import html</a><br/><a href="/get_page/w13/python">from browser import document as doc</a><br/><a href="/get_page/w13/python">import math</a></p>
-<p><a href="/get_page/w13/python"># 利用 html 建立 canvas 超文件物件</a><br/><a href="/get_page/w13/python">canvas = html.CANVAS(width=600, height=600)</a><br/><a href="/get_page/w13/python">brython_div = doc["brython_div1"]</a><br/><a href="/get_page/w13/python">brython_div &lt;= canvas</a></p>
-<p><a href="/get_page/w13/python">ctx = canvas.getContext("2d")</a><br/><a href="/get_page/w13/python">ctx.lineWidth = 1</a></p>
-<p><a href="/get_page/w13/python"># 繪製兩個矩形</a><br/><a href="/get_page/w13/python">ctx.strokeStyle = 'red' # 設定矩形顏色為紅色</a><br/><a href="/get_page/w13/python">ctx.beginPath() </a><br/><a href="/get_page/w13/python">ctx.rect(150, 150, 200, 200)</a><br/><a href="/get_page/w13/python">ctx.rect(250, 250, 200, 200)</a><br/><a href="/get_page/w13/python">ctx.stroke()</a></p>
-<p><a href="/get_page/w13/python"># 繪製對角線，顏色設定為藍色</a><br/><a href="/get_page/w13/python">ctx.strokeStyle = 'blue' # 設定對角線顏色為藍色</a><br/><a href="/get_page/w13/python">ctx.beginPath() </a><br/><a href="/get_page/w13/python">ctx.moveTo(150, 150)</a><br/><a href="/get_page/w13/python">ctx.lineTo(350, 350)</a><br/><a href="/get_page/w13/python">ctx.stroke()</a></p>
-<p><a href="/get_page/w13/python"># 計算外切圓的圓心和半徑</a><br/><a href="/get_page/w13/python"># 矩形 1 的屬性</a><br/><a href="/get_page/w13/python">x1, y1, w1, h1 = 150, 150, 200, 200</a><br/><a href="/get_page/w13/python"># 矩形 2 的屬性</a><br/><a href="/get_page/w13/python">x2, y2, w2, h2 = 250, 250, 200, 200</a></p>
-<p><a href="/get_page/w13/python"># 矩形 1 的對角線長度</a><br/><a href="/get_page/w13/python">diagonal1 = math.sqrt(w1**2 + h1**2)</a><br/><a href="/get_page/w13/python">radius1 = diagonal1 / 2 # 外切圓半徑是對角線長度的一半</a><br/><a href="/get_page/w13/python">centerX1 = x1 + w1 / 2 # 圓心 X 坐標</a><br/><a href="/get_page/w13/python">centerY1 = y1 + h1 / 2 # 圓心 Y 坐標</a></p>
-<p><a href="/get_page/w13/python"># 繪製矩形 1 的外切圓</a><br/><a href="/get_page/w13/python">ctx.strokeStyle = 'black' # 設定圓的顏色為綠色</a><br/><a href="/get_page/w13/python">ctx.beginPath()</a><br/><a href="/get_page/w13/python">ctx.arc(centerX1, centerY1, radius1, 0, 2 * math.pi) # 圓心和半徑</a><br/><a href="/get_page/w13/python">ctx.stroke()</a></p>
-<p><a href="/get_page/w13/python"># 矩形 2 的對角線長度</a><br/><a href="/get_page/w13/python">diagonal2 = math.sqrt(w2**2 + h2**2)</a><br/><a href="/get_page/w13/python">radius2 = diagonal2 / 2 # 外切圓半徑是對角線長度的一半</a><br/><a href="/get_page/w13/python">centerX2 = x2 + w2 / 2 # 圓心 X 坐標</a><br/><a href="/get_page/w13/python">centerY2 = y2 + h2 / 2 # 圓心 Y 坐標</a></p>
-<p><a href="/get_page/w13/python"># 繪製矩形 2 的外切圓</a><br/><a href="/get_page/w13/python">ctx.strokeStyle = 'black' # 設定圓的顏色為紫色</a><br/><a href="/get_page/w13/python">ctx.beginPath()</a><br/><a href="/get_page/w13/python">ctx.arc(centerX2, centerY2, radius2, 0, 2 * math.pi) # 圓心和半徑</a><br/><a href="/get_page/w13/python">ctx.stroke()</a></p><h1>HW 2</h1>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from browser import html
+from browser import document as doc
+import math
+
+# 利用 html 建立 canvas 超文件物件
+canvas = html.CANVAS(width=600, height=600)
+brython_div = doc["brython_div1"]
+brython_div &lt;= canvas
+
+ctx = canvas.getContext("2d")
+ctx.lineWidth = 1
+
+# 繪製兩個矩形
+ctx.strokeStyle = 'red' # 設定矩形顏色為紅色
+ctx.beginPath()
+ctx.rect(150, 150, 200, 200)
+ctx.rect(250, 250, 200, 200)
+ctx.stroke()
+
+# 繪製對角線，顏色設定為藍色
+ctx.strokeStyle = 'blue' # 設定對角線顏色為藍色
+ctx.beginPath()
+ctx.moveTo(150, 150)
+ctx.lineTo(350, 350)
+ctx.stroke()
+
+# 計算外切圓的圓心和半徑
+# 矩形 1 的屬性
+x1, y1, w1, h1 = 150, 150, 200, 200
+# 矩形 2 的屬性
+x2, y2, w2, h2 = 250, 250, 200, 200
+
+# 矩形 1 的對角線長度
+diagonal1 = math.sqrt(w1**2 + h1**2)
+radius1 = diagonal1 / 2 # 外切圓半徑是對角線長度的一半
+centerX1 = x1 + w1 / 2 # 圓心 X 坐標
+centerY1 = y1 + h1 / 2 # 圓心 Y 坐標
+
+# 繪製矩形 1 的外切圓
+ctx.strokeStyle = 'black' # 設定圓的顏色為綠色
+ctx.beginPath()
+ctx.arc(centerX1, centerY1, radius1, 0, 2 * math.pi) # 圓心和半徑
+ctx.stroke()
+
+# 矩形 2 的對角線長度
+diagonal2 = math.sqrt(w2**2 + h2**2)
+radius2 = diagonal2 / 2 # 外切圓半徑是對角線長度的一半
+centerX2 = x2 + w2 / 2 # 圓心 X 坐標
+centerY2 = y2 + h2 / 2 # 圓心 Y 坐標
+
+# 繪製矩形 2 的外切圓
+ctx.strokeStyle = 'black' # 設定圓的顏色為紫色
+ctx.beginPath()
+ctx.arc(centerX2, centerY2, radius2, 0, 2 * math.pi) # 圓心和半徑
+ctx.stroke()</pre>
+<p><br/><br/></p><h1>HW 2</h1>
 <h4>主題: Python 的數列、判斷式與重複迴圈 (20%)<span style="background-color: #ffff99;"><br/></span></h4>
 <p style="padding-left: 30px;">Python 課程教材: <a href="https://www.learnpythonwithjupyter.com/">https://www.learnpythonwithjupyter.com/</a> - PART 2 and Part 3</p>
 <hr/>
