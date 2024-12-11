@@ -2,7 +2,7 @@
         <head>
         <title>cp_hw</title>
         <meta charset="utf-8">
-<meta property="head" content="H1">
+<meta property="head" content="H3">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="./../cmsimde/static/chimper/fonts/icomoon/style.css">
         <link rel="stylesheet" href="./../cmsimde/static/chimper/css/bootstrap.min.css">
@@ -141,19 +141,112 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">HW 4 Exam << <a href='HW 4 Exam.html'>Previous</a> <a href='Brython.html'>Next</a> >> Brython<br /><h1>Final Report</h1>
-<p>期末口頭與書面專題報告 (20%)</p>
-<p>期末口頭專題報告影片:</p>
-<p style="padding-left: 30px;">......</p>
-<p>期末書面專題報告檔案 (pdf):</p>
-<p style="padding-left: 30px;">......</p>
-<p>電腦輔助設計與實習課程總結心得:</p>
-<p style="padding-left: 30px;">......</p>
-<p>期末報告自評成績:</p>
-<p style="padding-left: 30px;">完成上述流程後, 請將 Final Report 自評分數輸入 cp2024 自評表單中.</p>
-<p style="padding-left: 30px;"></p>
-<p style="padding-left: 30px;"></p>
-<br />HW 4 Exam << <a href='HW 4 Exam.html'>Previous</a> <a href='Brython.html'>Next</a> >> Brython</div>
+    <div id="tipue_search_content">w13 << <a href='w13.html'>Previous</a> <a href='HW 2.html'>Next</a> >> HW 2<br /><h1>w14</h1>
+<p>請根據兩個圓繪圖所圍成的<a href="https://mde.tw/cp2024/content/Brython.html?src=https://gist.githubusercontent.com/mdecycu/5eca62565d509668d731720f1994e127/raw/0e370b2ad0c429ab4c8905244022c27cfca8cfba/two_cicle_fill_ex1.py">區域</a>(目前圍成三個區域, 但若圓心移動可能彼此獨立)進行不同顏色著色, 條件是當各圓半徑與圓心座標變動時, 程式只需輸入兩個圓的圓心座標與半徑, 就可以完成各區域的著色任務.</p>
+<p><a href="https://mde.tw/cp2024/content/Brython.html?src=https://gist.githubusercontent.com/mdecycu/5eca62565d509668d731720f1994e127/raw/a9d887546e024d52d16c228a6657146580342746/two_cicle_section_fill_ex.py">參考範例</a></p>
+<p><a href="https://mde.tw/cp2024/content/Brython.html?src=https://gist.githubusercontent.com/mdecycu/5eca62565d509668d731720f1994e127/raw/7a086162a04783664bf64d9abd49da059634a0b4/multiple_circle_interaction_fill.py">多個圓相交區域著色範例</a></p>
+<p>以下為參考範例的詳細說明, 請根據此一程式架構, 修改為三個圓的區域塗色任務.</p>
+<p><a href="https://mdecp2024.github.io/hw-41323207/content/Brython.html?src=https://gist.githubusercontent.com/41323207/d1cd5f286c05c2459f5f8c47af01b9c0/raw/620636a6eee35556d1a9fa2bdd23d82e97440c19/hw6.py">三個圓塗色</a>:</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from browser import html
+from browser import document as doc
+import random
+import math
+
+# 定義一個函式來初始化畫布
+def initialize_canvas(canvas_width=500, canvas_height=500, id="brython_div1"):
+# 創建 canvas 並設置寬度與高度
+canvas = html.CANVAS(width=canvas_width, height=canvas_height)
+brython_div = doc[id]
+brython_div &lt;= canvas
+
+# 獲取 canvas 的 2D 上下文
+ctx = canvas.getContext("2d")
+
+return canvas, ctx
+
+# 定義一個隨機顏色生成函式
+def random_color_generator():
+r = random.randint(0, 255)
+g = random.randint(0, 255)
+b = random.randint(0, 255)
+return f"rgb({r}, {g}, {b})"
+
+# 判斷點 (px, py) 是否在圓內
+def is_point_in_circle(px, py, cx, cy, r):
+return (px - cx) ** 2 + (py - cy) ** 2 &lt;= r ** 2
+
+# 使用者設定的圓心座標和半徑，並進行掃描線填充
+def draw_circles(x1, y1, r1, x2, y2, r2):
+# 初始化畫布
+canvas, ctx = initialize_canvas(500, 500)
+
+# 清除畫布
+ctx.clearRect(0, 0, canvas.width, canvas.height)
+
+# 顏色區域存儲
+color_dict = {}
+
+# 使用掃描線方法填充區域
+for py in range(0, canvas.height):
+# 逐行掃描，判斷每個點是否在圓內
+current_color = None # 當前掃描線區域的顏色
+for px in range(0, canvas.width):
+in_circle1 = is_point_in_circle(px, py, x1, y1, r1)
+in_circle2 = is_point_in_circle(px, py, x2, y2, r2)
+in_circle3 = is_point_in_circle(px, py, x3, y3, r3)
+
+if in_circle1 and in_circle2 and in_circle3:
+# 三個圓的交集區域
+if "intersection_all" not in color_dict:
+color_dict["intersection_all"] = random_color_generator()
+current_color = color_dict["intersection_all"]
+elif in_circle1 and in_circle2:
+# 圓1和圓2的交集區域
+if "intersection_1_2" not in color_dict:
+color_dict["intersection_1_2"] = random_color_generator()
+current_color = color_dict["intersection_1_2"]
+elif in_circle1 and in_circle3:
+# 圓1和圓3的交集區域
+if "intersection_1_3" not in color_dict:
+color_dict["intersection_1_3"] = random_color_generator()
+current_color = color_dict["intersection_1_3"]
+elif in_circle2 and in_circle3:
+# 圓2和圓3的交集區域
+if "intersection_2_3" not in color_dict:
+color_dict["intersection_2_3"] = random_color_generator()
+current_color = color_dict["intersection_2_3"]
+
+elif in_circle1:
+# 只在圓1內
+if "circle1" not in color_dict:
+color_dict["circle1"] = random_color_generator()
+current_color = color_dict["circle1"]
+elif in_circle2:
+# 只在圓2內
+if "circle2" not in color_dict:
+color_dict["circle2"] = random_color_generator()
+current_color = color_dict["circle2"]
+elif in_circle3:
+# 只在圓3內
+if "circle3" not in color_dict:
+color_dict["circle3"] = random_color_generator()
+current_color = color_dict["circle3"]
+else:
+# 點不在兩個圓內，畫外區域
+current_color = "white" # 背景色白色
+
+# 填充顏色
+ctx.fillStyle = current_color
+ctx.fillRect(px, py, 1, 1) # 填充一個像素
+
+# 直接設定圓心和半徑
+x1, y1, r1 = 150, 200, 100 # 圓1：圓心 (150, 200)，半徑 100
+x2, y2, r2 = 250, 200, 100 # 圓2：圓心 (250, 200)，半徑 100
+x3, y3, r3 = 350, 200, 100 # 圓3：圓心 (350, 200)，半徑 100
+
+# 呼叫畫圓函式
+draw_circles(x1, y1, r1, x2, y2, r2)</pre>
+<p><br/><br/></p><br />w13 << <a href='w13.html'>Previous</a> <a href='HW 2.html'>Next</a> >> HW 2</div>
         
     <!-- footer -->
       <div class="container">
